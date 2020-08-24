@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Book List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JavaScript Application for keeping track of books you want to read">
+    <meta name="keywords" content="Books, Book List, Reading, List">
+    <meta name="author" content="Greg Tonnis">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/8c12c93c07.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" </head>
+
+<body>
+
+    <div class="container mt-4">
+        <div id="intro">
+            <h1 class="display-2 text-center">
+                My Book List<span class="text-primary"><br></span> <i class="fas fa-book-open logo"></i> </h1>
+        </div>
+
+        <form id="book-form">
+
+            <div class="form-inline">
+                <label for="author">Author</label>
+                <input type="text" id="author" class="form-contorl">
+            </div>
+
+            <div class="form-inline">
+                <label for="title">Book Title</label>
+                <input type="text" id="title" class="form-contorl">
+            </div>
+
+            <div class="form-inline">
+                <label for="year">Book Year</label>
+                <input type="text" id="year" class="form-contorl">
+            </div>
+
+
+            <div id="submit">
+                <input type="submit" value="Add Book" class="btn btn-primary btn-block">
+            </div>
+        </form>
+
+        <div id="book-form">
+            <table class="table table-striped mt-4">
+
+                <thead>
+                    <tr>
+
+                        <th>Author</th>
+                        <th>Title</th>
+                        <th>Book Year</th>
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="book-list"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--
+        <div id="bookCover">
+            <select id="bookCoverDropDown" onchange="changeBookCover(select);">
+    <option value="../images/book-cover.jpg">Select a Book Cover</option>
+    <option value="../images/book-cover-2.jpg">Book Cover 1</option>
+    <option value="../images/">Caffe Latte</option>
+    <option value="../images/cappuccino.jpg">Cappuccino</option>
+    <option value="../images/marocchino.jpg">Caffee Marrocchino</option>
+    <option value="../images/americano.jpg">Caffe Americano</option>
+    <option value="../images/shakerato.jpg">Caffe Shakerato</option>
+    <option value="../images/corretto.jpg">Caffe Corretto</option>
+</select>
+        </div>
+-->
+
+    <script src="app.js"></script>
+</body>
+
+</html>
