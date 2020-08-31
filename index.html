@@ -58,25 +58,35 @@
 
                 </thead>
 
-                <tbody id="book-list"></tbody>
+                <tbody id="book-list">
+                   <div id="changeBackground">
+       <h4>Change Background</h4>
+        <button id="btn-1">Old Books</button>
+        <button id="btn-2">Library</button>
+        <button id="btn-3">Dark Wood</button>
+    </div> 
+                    
+                </tbody>
             </table>
         </div>
     </div>
-
-    <!--
-        <div id="bookCover">
-            <select id="bookCoverDropDown" onchange="changeBookCover(select);">
-    <option value="../images/book-cover.jpg">Select a Book Cover</option>
-    <option value="../images/book-cover-2.jpg">Book Cover 1</option>
-    <option value="../images/">Caffe Latte</option>
-    <option value="../images/cappuccino.jpg">Cappuccino</option>
-    <option value="../images/marocchino.jpg">Caffee Marrocchino</option>
-    <option value="../images/americano.jpg">Caffe Americano</option>
-    <option value="../images/shakerato.jpg">Caffe Shakerato</option>
-    <option value="../images/corretto.jpg">Caffe Corretto</option>
-</select>
-        </div>
--->
+    
+<script>let btn1 = document.querySelector('#btn-1');
+        let btn2 = document.querySelector('#btn-2');
+        let btn3 = document.querySelector('#btn-3');
+        
+        btn1.addEventListener('click', () => {
+            document.body.style.backgroundImage = "url('images/old-books-1.jpg')";
+        });
+        
+         btn2.addEventListener('click', () => {
+            document.body.style.backgroundImage = "url('images/library-1.jpg')";
+        });
+        
+         btn3.addEventListener('click', () => {
+            document.body.style.backgroundImage = "url('images/dark-wood-3.jpg')";
+        });</script>
+    
 
     <script src="app.js"></script>
 </body>
