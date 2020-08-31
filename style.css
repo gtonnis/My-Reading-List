@@ -80,6 +80,17 @@ body {
 
 }
 
+#changeBackground{
+     background-color: #2d3436;
+    background-image: linear-gradient(147deg, #2d3436 0%, #939393 74%);
+    padding: 0;
+    border-style: ridge;
+    border-color: black;
+    height: auto;
+    display:inline-block;
+	width:auto;
+}
+
 .text-primary {
     color: white;
     -webkit-text-stroke-width: 3.25px;
