@@ -131,8 +131,3 @@ document.querySelector('#book-list').addEventListener('click', (e) => {
     UI.showAlert('Book Removed', 'success');
 });
 
-//change background of application
-//function changeBookCover(select) {
-//            selectedvalue=select.value;
-//            alert(selectedvalue);
-//        }
