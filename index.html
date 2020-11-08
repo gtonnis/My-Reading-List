@@ -1,105 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>My Book List</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JavaScript Application for keeping track of books you want to read">
-    <meta name="keywords" content="Books, Book List, Reading, List">
-    <meta name="author" content="Greg Tonnis">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/8c12c93c07.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css" </head>
-
-<body>
-
-    <div class="container mt-4">
-        <div id="intro">
-            <h1 class="display-2 text-center">
-                My Book List<span class="text-primary"><br></span> <i class="fas fa-book-open logo"></i> </h1>
-                
-                 <div id="changeBackground" class="dropdown">
-       <button class="dropbtn">Change Background</button>
-  <div class="dropdown-content">
-        <button id="btn-1">Old Books</button>
-        <button id="btn-2">Library</button>
-        <button id="btn-3">Dark Wood</button>
-                </div> 
-                </div>
-        </div>
-
-        <form id="book-form">
-
-            <div class="form-inline">
-                <label for="author">Author</label>
-                <input type="text" id="author" class="form-contorl">
+     <script src="https://kit.fontawesome.com/8c12c93c07.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+          
+            <div id="header">
+            <h1>My Book List <i class="fas fa-book-open logo"></i> </h1>
+                <div id="changeBackground" class="dropdown">
+                    <button class="dropbtn">Change Background</button>
+               <div class="dropdown-content">
+                     <button id="btn-1">Old Books</button>
+                     <button id="btn-2">Dark Wood</button>
+                     <button id="btn-3">Library</button>
+                             </div> 
+                             </div>
             </div>
-
-            <div class="form-inline">
-                <label for="title">Book Title</label>
-                <input type="text" id="title" class="form-contorl">
-            </div>
-
-            <div class="form-inline">
-                <label for="year">Book Year</label>
-                <input type="number" id="year" class="form-contorl">
-            </div>
-
-
-            <div id="submit">
-                <input type="submit" value="Add Book" class="btn btn-primary btn-block">
-            </div>
-        </form>
-        
-        
-     
+          
+            <form id="book-form">
               
+                <div class="form-inline">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" class="form-contorl">
+                </div>
+                <div class="form-inline">
+                    <label for="title">Book Title</label>
+                    <input type="text" id="title" class="form-contorl">
+                </div>
+                <div class="form-inline">
+                    <label for="year">Book Year</label>
+                    <input type="number" id="year" class="form-contorl">
+                </div>
+
+                <div id="submit">
+                    <input type="submit" value="Add Book" class="btn btn-primary">
+                </div>
+               
+            
+            </form>
+            <p>(Sort book list by clicking the orange "sort" to right of the heading below)</Sort></p>
+            <div id="book-form">
+            <table class="table table-sortable">
+            <thead>
+                <tr>
+                    <th><u>Author</u><span class="sort"> sort</span></th>
+                    <th><u>Title</u> <span class="sort"> sort</span></th> 
+                    <th><u>Book Year</u> <span class="sort"> sort</span></th> 
+                    <th></th>
+                </tr>
                 
-        <div id="book-form">
-            <table class="table table-striped mt-4">
-
-                <thead>
-                    <tr>
-
-                        <th>Author</th>
-                        <th>Title</th>
-                        <th>Book Year</th>
-                        <th></th>
-
-                    </tr>
                 </thead>
-
                 <tbody id="book-list"></tbody>
             </table>
-            <tbody id="book-list">
-                 
-                </tbody>
         </div>
-       
     </div>
-<!--     <div class="container" id="copy">
-         <p>&copy gregtonnis.dev</p>
-      </div> -->
-    
-<script>
-    let btn1 = document.querySelector('#btn-1');
-        let btn2 = document.querySelector('#btn-2');
-        let btn3 = document.querySelector('#btn-3');
-        
-        btn1.addEventListener('click', () => {
-            document.body.style.backgroundImage = "url('images/old-books-1.jpg')";
-        });
-        
-         btn2.addEventListener('click', () => {
-            document.body.style.backgroundImage = "url('images/library-1.jpg')";
-        });
-        
-         btn3.addEventListener('click', () => {
-            document.body.style.backgroundImage = "url('images/dark-wood-3.jpg')";
-        });
-    </script>
-    <script src="app.js"></script>
-</body>
 
+    <script>
+        let btn1 = document.querySelector('#btn-1');
+            let btn2 = document.querySelector('#btn-2');
+            let btn3 = document.querySelector('#btn-3');
+            
+            btn1.addEventListener('click', () => {
+                document.body.style.backgroundImage = "url('images/old-books-1.jpg')";
+            });
+            
+             btn2.addEventListener('click', () => {
+                document.body.style.backgroundImage =  "url('images/dark-wood-3.jpg')";
+            });
+            
+             btn3.addEventListener('click', () => {
+                document.body.style.backgroundImage =   "url('images/library-1.jpg')";
+            });
+        </script>
+    <script src="app.js"></script>
+    </body>
 </html>
