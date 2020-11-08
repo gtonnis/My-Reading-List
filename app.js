@@ -7,12 +7,12 @@ class Book {
     }
 }
 
-// UI Class: Handle UI Tasks
-class UI {
+// UserInterface Class: Handle UserInterface Tasks
+class UserInterface {
     static displayBooks() {
-        const books = Store.getBooks();
+       const books = Store.getBooks();
 
-        books.forEach((book) => UI.addBookToList(book));
+        books.forEach((book) => UserInterface.addBookToList(book));
     }
 
     static addBookToList(book) {
@@ -24,21 +24,21 @@ class UI {
 <td>${book.author}</td>
 <td>${book.title}</td>
 <td>${book.year}</td>
-<td><a href="#" class="btn btn-danger btn-sm delete">Remove Book</a></td>
+<td><a href="#" class="btn btn-danger delete">Remove Book</a></td>
 `;
-
+       
         list.appendChild(row);
     }
-
-    static deleteBook(el) {
-        if (el.classList.contains('delete')) {
+    
+    static deleteBook(el){
+        if(el.classList.contains('delete')){
             el.parentElement.parentElement.remove();
         }
     }
-
+    
     static showAlert(message, className) {
         const div = document.createElement('div');
-        div.className = `alert alert-${className}`;
+     div.className = `alert alert-${className}`;   
         div.appendChild(document.createTextNode(message));
         const container = document.querySelector('.container');
         const form = document.querySelector('#book-form');
@@ -46,11 +46,11 @@ class UI {
         // Vanish in 3 seconds
         setTimeout(() => document.querySelector('.alert').remove(), 3000);
     }
-
-    static clearFields() {
-        document.querySelector('#author').value = '';
-        document.querySelector('#title').value = '';
-        document.querySelector('#year').value = '';
+    
+    static clearFields(){
+    document.querySelector('#author').value = ''; 
+    document.querySelector('#title').value = '';
+    document.querySelector('#year').value = '';
     }
 }
 
@@ -59,35 +59,35 @@ class UI {
 class Store {
     static getBooks() {
         let books;
-        if (localStorage.getItem('books') === null) {
+        if (localStorage.getItem('books') === null){
             books = [];
         } else {
             books = JSON.parse(localStorage.getItem('books'));
-        }
-
+            }
+        
         return books;
     }
-
+    
     static addBook(book) {
         const books = Store.getBooks();
         books.push(book);
         localStorage.setItem('books', JSON.stringify(books));
     }
-    // PROBLEM MUST REMOVE BY ISBN WE'RE NOT USING
+    // Remove Book 
     static removeBook(title) {
         const books = Store.getBooks();
         books.forEach((book, index) => {
-            if (book.title === title) {
-                books.splice(index, 1);
-            }
+          if(book.title === title)  {
+              books.splice(index, 1);
+          }
         });
-
+        
         localStorage.setItem('books', JSON.stringify(books));
     }
 }
 
 // Event: Display Books
-document.addEventListener('DOMContentLoaded', UI.displayBooks);
+document.addEventListener('DOMContentLoaded', UserInterface.displayBooks);
 
 // Event: Add a Book
 document.querySelector('#book-form').addEventListener('submit', (e) => {
@@ -100,34 +100,78 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
     const year = document.querySelector('#year').value;
 
     // Validate
-    if (author === '' || title === '' || year === '') {
-        UI.showAlert('Please fill in all fields.', 'danger');
-    } else {
-        // Instatiate book
-        const book = new Book(author, title, year);
+    if (author ==='' || title === '' || year ===''){
+        UserInterface.showAlert('Please fill in all fields.', 'danger');
+    }else{
+         // Instatiate book
+    const book = new Book(author, title, year);
 
-        // Add Book to UI
-        UI.addBookToList(book);
-
+    // Add Book to UserInterface
+    UserInterface.addBookToList(book);
+        
         // Add book to store
         Store.addBook(book);
-
+        
         //Show success mesage
-        UI.showAlert('Book Added', 'success');
-
-        //Clear fields
-        UI.clearFields();
+        UserInterface.showAlert('Book Added', 'success');
+    
+    //Clear fields
+UserInterface.clearFields();
     }
-});
+    });
 
 // Event: remove book (Mark Book Read)
 document.querySelector('#book-list').addEventListener('click', (e) => {
-    // Remove book from UI
-    UI.deleteBook(e.target);
-
+   // Remove book from UserInterface
+    UserInterface.deleteBook(e.target);
+    
     // Remove book from Store
-    Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+ Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
     //Show success mesage
-    UI.showAlert('Book Removed', 'success');
+        UserInterface.showAlert('Book Removed', 'success');
+});
+
+//Sorting Books
+/**
+*
+*@param {HTMLTableElement} table The table to sort
+*@param {number} column The index of the column to sort
+*@param {boolean} asc Determines if the sorting will be in ascending
+*/
+function sortTableByColumn(table, column, asc = true){
+    const dirModifier = asc ? 1 : -1;
+    const tBody = table.tBodies[0];
+    const rows = Array.from(tBody.querySelectorAll("tr"));
+
+    //Sort each row
+    const sortedRows = rows.sort((a, b) => {
+       const aColumnText = a.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
+       const bColumnText = b.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
+
+       return aColumnText > bColumnText ? (1 * dirModifier) : (-1 * dirModifier);
+    });
+
+    //Remove all existing TRs from the table
+    while (tBody.firstChild){
+        tBody.removeChild(tBody.firstChild);
+    }
+
+    //Re-add the newly sorted rows
+    tBody.append(...sortedRows);
+
+    //Remember how the column is currently sorted
+    table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+    table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-asc", asc);
+    table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-desc", !asc);
+}
+
+document.querySelectorAll(".table-sortable th").forEach(headerCell => {
+    headerCell.addEventListener("click", () => {
+       const tableElement = headerCell.parentElement.parentElement.parentElement; 
+       const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+       const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+       sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+    });
 });
 
