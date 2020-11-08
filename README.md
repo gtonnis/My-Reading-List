@@ -6,13 +6,17 @@ You can add books to list, and remove books from list.
 Alerts will display for not entering all fields, or adding or removing books.
 You can also change the background image of the application, there are three different backgrounds to choose from, using a dropdown menu.
 
-Library Background
-![](screenshot-library-background.png)
-
-Old Books Background
-![](screenshot-old-books-background.png)
+New functionality! You can now sort books in the list, by Author, Book Title, or Book Year. Just by clicking the orange text "sort". 
 
 Dark Wood Background
-![](screenshot-wood-background.png)
+![](my-book-list-scrnshot.png)
+
+Library Background
+![]()
+
+Old Books Background
+![]()
+
+
 
 
