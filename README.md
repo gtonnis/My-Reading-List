@@ -9,13 +9,13 @@ You can also change the background image of the application, there are three dif
 New functionality! You can now sort books in the list, by Title, Author, or Year. Just by clicking the orange text "sort". 
 
 Dark Wood Background
-![](my-book-list-scrnshot.png)
+![](read-list-wd.png)
 
 Library Background
-![]()
+![](read-list-lb.png)
 
 Old Books Background
-![]()
+![](read-list-ob.png)
 
 
 
