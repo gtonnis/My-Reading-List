@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Book List</title>
+    <title>My Reading List</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,7 +12,7 @@
         <div class="container">
           
             <div id="header">
-            <h1>My Book List <i class="fas fa-book-open logo"></i> </h1>
+            <h1>My Reading List <i class="fas fa-book-open logo"></i> </h1>
                 <div id="changeBackground" class="dropdown">
                     <button class="dropbtn">Change Background</button>
                <div class="dropdown-content">
@@ -24,39 +24,41 @@
             </div>
           
             <form id="book-form">
+             
+             <div class="form-inline">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" class="form-contorl">
+                </div>
               
                 <div class="form-inline">
                     <label for="author">Author</label>
                     <input type="text" id="author" class="form-contorl">
                 </div>
+                
                 <div class="form-inline">
-                    <label for="title">Book Title</label>
-                    <input type="text" id="title" class="form-contorl">
-                </div>
-                <div class="form-inline">
-                    <label for="year">Book Year</label>
+                    <label for="year">Year</label>
                     <input type="number" id="year" class="form-contorl">
                 </div>
 
                 <div id="submit">
-                    <input type="submit" value="Add Book" class="btn btn-primary">
+                    <input type="submit" value="Add to List" class="btn btn-primary">
                 </div>
                
             
             </form>
-            <p>(Sort book list by clicking the orange "sort" to right of the heading below)</Sort></p>
+            <p>(Sort reading list by clicking the orange "sort" to right of the heading below)</Sort></p>
             <div id="book-form">
             <table class="table table-sortable">
             <thead>
                 <tr>
+                   <th><u>Title</u> <span class="sort"> sort</span></th> 
                     <th><u>Author</u><span class="sort"> sort</span></th>
-                    <th><u>Title</u> <span class="sort"> sort</span></th> 
-                    <th><u>Book Year</u> <span class="sort"> sort</span></th> 
+                    <th><u>Year</u> <span class="sort"> sort</span></th> 
                     <th></th>
                 </tr>
                 
                 </thead>
-                <tbody id="book-list"></tbody>
+                <tbody id="reading-list"></tbody>
             </table>
         </div>
     </div>
