@@ -95,7 +95,11 @@ p {
    background-color: white  
   }
   
-  
+input:focus {
+  background-color: #c4c4c4;
+    text-shadow: none;
+}  
+
 input[type=text] {
    
 }
