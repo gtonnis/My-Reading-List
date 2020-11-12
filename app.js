@@ -1,8 +1,8 @@
 // Book Class: Represents a Book
 class Book {
-    constructor(author, title, year) {
-        this.title = author;
-        this.author = title;
+    constructor(title, author, year) {
+        this.title = title;
+        this.author = author;
         this.year = year;
     }
 }
@@ -10,19 +10,19 @@ class Book {
 // UserInterface Class: Handle UserInterface Tasks
 class UserInterface {
     static displayBooks() {
-       const books = Store.getBooks();
+       const books = Storage.getBooks();
 
         books.forEach((book) => UserInterface.addBookToList(book));
     }
 
     static addBookToList(book) {
-        const list = document.querySelector('#book-list');
+        const list = document.querySelector('#reading-list');
 
         const row = document.createElement('tr');
 
         row.innerHTML = `
-<td>${book.author}</td>
 <td>${book.title}</td>
+<td>${book.author}</td>
 <td>${book.year}</td>
 <td><a href="#" class="btn btn-danger delete">Remove Book</a></td>
 `;
@@ -43,8 +43,8 @@ class UserInterface {
         const container = document.querySelector('.container');
         const form = document.querySelector('#book-form');
         container.insertBefore(div, form);
-        // Vanish in 3 seconds
-        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+        // Vanish in 2 seconds
+        setTimeout(() => document.querySelector('.alert').remove(), 2000);
     }
     
     static clearFields(){
@@ -55,8 +55,8 @@ class UserInterface {
 }
 
 
-// Store Class: Handles Storage
-class Store {
+// Storage Class: Handles Storage
+class Storage {
     static getBooks() {
         let books;
         if (localStorage.getItem('books') === null){
@@ -69,13 +69,13 @@ class Store {
     }
     
     static addBook(book) {
-        const books = Store.getBooks();
+        const books = Storage.getBooks();
         books.push(book);
         localStorage.setItem('books', JSON.stringify(books));
     }
     // Remove Book 
     static removeBook(title) {
-        const books = Store.getBooks();
+        const books = Storage.getBooks();
         books.forEach((book, index) => {
           if(book.title === title)  {
               books.splice(index, 1);
@@ -109,26 +109,26 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
     // Add Book to UserInterface
     UserInterface.addBookToList(book);
         
-        // Add book to store
-        Store.addBook(book);
+        // Add book to storage
+        Storage.addBook(book);
         
         //Show success mesage
-        UserInterface.showAlert('Book Added', 'success');
+        UserInterface.showAlert('Information Added', 'success');
     
     //Clear fields
 UserInterface.clearFields();
     }
     });
 
-// Event: remove book (Mark Book Read)
-document.querySelector('#book-list').addEventListener('click', (e) => {
+// Event: remove book 
+document.querySelector('#reading-list').addEventListener('click', (e) => {
    // Remove book from UserInterface
     UserInterface.deleteBook(e.target);
     
-    // Remove book from Store
- Store.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
-    //Show success mesage
-        UserInterface.showAlert('Book Removed', 'success');
+    // Remove book from storage
+ Storage.removeBook(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+    //Show success message
+        UserInterface.showAlert('Information Removed', 'success');
 });
 
 //Sorting Books
